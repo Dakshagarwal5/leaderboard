@@ -11,7 +11,8 @@ function App() {
 
   const fetchUsers = async () => {
     try {
-      const res = await axios.get('http://localhost:3000/api/users');
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/users`);
+
       setUsers(res.data);
     } catch (err) {
       console.error('Error fetching users:', err);
@@ -29,9 +30,8 @@ function App() {
     }
 
     try {
-      const res = await axios.post('http://localhost:3000/api/claim', {
-        userId: selectedUserId,
-      });
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/claim`, { userId: selectedUserId });
+
 
       const claimed = res.data.claimedPoints;
       setClaimedPoints(claimed);
